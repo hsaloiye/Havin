@@ -1,4 +1,4 @@
-package hello;
+package controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,5 +10,6 @@ public class HelloController {
     public String index() {
         return "I am Havin, your board game selection assistant!";
     }
+    
     
 }
