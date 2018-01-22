@@ -1,0 +1,35 @@
+<div class="container pad-top">
+  <table class="table chosenGame">
+      <tr>
+          <td><h3>Details for {{game.name}}</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Name</td>
+          <td>{{game.name}}</td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td>{{game.description}}</td>
+      </tr>
+      <tr>
+          <td>Minimum Number of Players</td>
+          <td>{{game.minPlayers}}</td>
+      </tr>
+      <tr>
+          <td>Maximum Number of Players</td>
+          <td>{{game.maxPlayers}}</td>
+      </tr>
+      <tr>
+          <td>Duration</td>
+          <td>{{game.duration}}</td>
+      </tr>
+        <tr>
+          <td>Genre</td>
+          <td>{{game.genre}}</td>
+      </tr>
+  </table>
+  <div>
+      <a class="btn btn-primary" ui-sref="editGame({id:game.id})">Edit</a>
+  </div>
+</div>
