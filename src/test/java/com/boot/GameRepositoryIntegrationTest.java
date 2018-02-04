@@ -14,9 +14,7 @@ import static org.hamcrest.Matchers.*;
 import com.boot.model.Game;
 import com.boot.repository.GameRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(App.class)
-public class GameRepositoryIntegrationTest {
+public class GameRepositoryIntegrationTest extends TestBase {
 	
 	@Autowired
 	GameRepository gameRepository;

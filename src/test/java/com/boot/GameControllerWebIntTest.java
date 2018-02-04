@@ -13,21 +13,21 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(App.class)
 @WebIntegrationTest
-public class GameControllerWebIntTest {
+public class GameControllerWebIntTest extends TestBase {
 	
 	@Test
 	public void testListAll() throws IOException{
 		RestTemplate restTemplate = new TestRestTemplate();
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8090/api/v1/games", String.class);
+		String testURL = "http://localhost:8080/api/v1/games";
+		ResponseEntity<String> response = restTemplate.getForEntity(testURL, String.class);
 		
 		assertThat(response.getStatusCode(), is(HttpStatus.OK));
 		
