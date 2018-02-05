@@ -3,7 +3,10 @@ package com.boot;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ import com.boot.controller.GameController;
 import com.boot.model.Game;
 import com.boot.repository.GameRepository;
 
-public class GameControllerTest {
+public class GameControllerTest extends TestBase{
 	
 	@InjectMocks
 	private GameController controller;
@@ -94,18 +97,17 @@ public class GameControllerTest {
 		assertThat(actualUpdatedGame.getName(), is("OurGame"));
 		
 	}
-	
+	//Gave up on testing this...stopped at verifying delete is called
+	//TODO: better understand how to test add and delete from mock DB calls
 	@Test
 	public void delete_shouldRemoveTheSpecifiedGame() {
-		Game mockGame = new Game(1L, "NewGame", "Imaginary", "1", 0, 0, "testOnly");
-		when(gameRepository.saveAndFlush(mockGame)).thenReturn(mockGame);
-		controller.create(mockGame);
+		Game mockGame = new Game(2L, "NewGame", "Imaginary", "1 hour", 0, 0, "testOnly");
+		when(gameRepository.findOne(2L)).thenReturn(mockGame);
 		
-		when(gameRepository.findOne(1L)).thenReturn(mockGame);
+		controller.delete(2L);
+		verify(gameRepository).findOne(2L);
 		
-		when(gameRepository.delete(1L)).thenReturn(mockGame);
-		
-		assertThat(controller.get(1L), is(nullValue()));
+		verify(gameRepository,  times(1)).delete(mockGame);
 	}
 
 }
